@@ -38,6 +38,7 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 
 \usepackage{fancyhdr}
 \usepackage{amsmath,amsfonts,amssymb,graphicx}    % EPS 图片支持
+\usepackage{autobreak}    % 自动断行
 \usepackage{unicode-math}
 \usepackage{subfigure}   % 使用子图形
 \usepackage{indentfirst} % 中文段落首行缩进
