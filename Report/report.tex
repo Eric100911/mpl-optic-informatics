@@ -482,21 +482,24 @@ $\theta$片由多块不同取向的一维光栅拼成。使用白光入射，频
 
 
 % 图像空间频率成分对比
-\begin{tabular}{cccc}
+\begin{table}
+    \centering
+    \caption{方向滤波实验结果对比表} \label{tab:directional_filter_results}
     \captionnamefont{\wuhao\bf\heiti}
     \captiontitlefont{\wuhao\bf\heiti}
-    \caption{方向滤波实验结果对比表} \label{tab:directional_filter_results} \\
-    \toprule
-    滤波器设置 & 条纹方向 & 空间周期（px） & 定性描述 \\
-    \midrule
-    \multirow{2}{*}{无滤波器}
-            & 水平 & $72.3$ & \multirow{2}{*}{二维点阵} \\
-            & 竖直 & $72.3$ & \\
-    仅水平频率 & 水平 & $72.2$ & 干涉条纹，沿水平方向铺展 \\
-    仅竖直频率 & 竖直 & $72.4$ & 干涉条纹，沿竖直方向铺展 \\
-    仅 $45^\circ$ 频率 & $45^\circ$ & $51.1$ & 干涉条纹，沿 $45^\circ$ 方向铺展 \\
-    仅 $-45^\circ$ 频率 & $-45^\circ$ & $51.1$ & 干涉条纹，沿 $-45^\circ$ 方向铺展 \\
-\end{tabular}
+    \begin{tabular}{cccc}
+        \toprule
+        滤波器设置 & 条纹方向 & 空间周期（px） & 定性描述 \\
+        \midrule
+        \multirow{2}{*}{无滤波器}
+                & 水平 & $72.3$ & \multirow{2}{*}{二维点阵} \\
+                & 竖直 & $72.3$ & \\
+        仅水平频率 & 水平 & $72.2$ & 干涉条纹，沿水平方向铺展 \\
+        仅竖直频率 & 竖直 & $72.4$ & 干涉条纹，沿竖直方向铺展 \\
+        仅 $45^\circ$ 频率 & $45^\circ$ & $51.1$ & 干涉条纹，沿 $45^\circ$ 方向铺展 \\
+        仅 $-45^\circ$ 频率 & $-45^\circ$ & $51.1$ & 干涉条纹，沿 $-45^\circ$ 方向铺展 \\
+    \end{tabular}
+\end{table}
 
 方向滤波实验结果如图\ref{tab:directional_filter_results}所示，衍射图样使用Adobe Photoshop软件标尺工具进行测量，得到了各个频率成分对应的空间周期信息，列于表\ref{tab:directional_filter_results}中。
 
@@ -519,34 +522,33 @@ $$
 \begin{figure*}
 
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_base_1.png}
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_1.png}
         \subcaption{卷积件1}
         \label{fig:convolution_base_1}
     \end{subfigure}
-
-    \begin{subfigure}[b]{0.4\textwidth}
+    \hspace{0.03\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_base_2.png}
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_2.png}
         \subcaption{卷积件2}
         \label{fig:convolution_base_2}
     \end{subfigure}
-
-    \caption{卷积件单独放置所得衍射图样}
+    \hspace{0.03\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_344_164.png}
+        \caption{卷积件1,2密接同向放置}
+        \label{fig:convolution_baseline}
+    \end{subfigure}
+    \caption{卷积件1,2单独放置以及两者密接同向放置所得衍射图样}
     \captionnamefont{\wuhao\bf\heiti}
     \captiontitlefont{\wuhao\bf\heiti}
     \label{fig:convolution_base}
 \end{figure*}
 
-\begin{figure*}
-    \centering
-    \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
-    \caption{卷积件密接同向放置所得衍射图样}
-    \label{fig:convolution_result}
-\end{figure*}
-
-将两块卷积件各自置于频谱面，在像面可观测到二维点阵的衍射图样，如图\ref{fig:convolution_base}所示；在两块卷积件密接同向放置时，如图\ref{fig:convolution_result}所示，能够观察到卷积件2对应的较为细密的衍射图样，以卷积件1衍射图样对应的空间周期以及方向进行排布，并可估计卷积件1, 2光栅常数$d_{1,2}$有以下关系：
+将两块卷积件各自置于频谱面，在像面可观测到二维点阵的衍射图样，如图\ref{fig:convolution_base_1}至\ref{fig:convolution_base_2}所示；在两块卷积件密接同向放置时，如图\ref{fig:convolution_baseline}所示，能够观察到卷积件2对应的较为细密的衍射图样，以卷积件1衍射图样对应的空间周期以及方向进行排布，并可估计卷积件1, 2光栅常数$d_{1,2}$有以下关系：
 
 \begin{equation}
     d_1 : d_2 \approx 1 : 4
@@ -627,6 +629,7 @@ $$
     \end{subfigure}
 
     % --- 换行并添加垂直间距 ---
+    \vspace{1em}
 
     % --- 第二排：2张图 ---
     % 由于外层有 \centering，这两张图会自动整体居中
@@ -658,7 +661,41 @@ $$
     \item 图\ref{fig:convolution_rot_01_60deg}与图\ref{fig:convolution_rot_02_30deg}，图\ref{fig:convolution_rot_01_45deg}与\ref{fig:convolution_rot_02_45deg}，图\ref{fig:convolution_rot_01_30deg}与图\ref{fig:convolution_rot_02_60deg}三组图像中，卷积件1,2旋转角度互为补角$90^\circ$，对应的衍射图样相似，提示整体衍射图样仅与卷积件1,2的相对取向有关。
 \end{enumerate}
 
-% 卷积件1, 2依次同步转过0, 30, 45, 60, 90度，五张图“上三下二”排布
+% 卷积件1, 2依次同步转过0, 30, 45, 60度，四张图“上二下二”排布
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
+        \subcaption{$+0^\circ$}
+        \label{fig:convolution_rot_both_00deg}
+    \end{subfigure}
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_014_194.png}
+        \subcaption{$+30^\circ$}
+        \label{fig:convolution_rot_both_30deg}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_029_209.png}
+        \subcaption{$+45^\circ$}
+        \label{fig:convolution_rot_both_45deg}
+    \end{subfigure}
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_044_224.png}
+        \subcaption{$+60^\circ$}
+        \label{fig:convolution_rot_both_60deg}
+    \end{subfigure}
+\end{figure*}
+
+为验证以上的第2点观察，进一步完善实验，将两块卷积件同步转动至相同角度，并记录相应的衍射图样，如图\ref{fig:convolution_rot_both_00deg}至图\ref{fig:convolution_rot_both_60deg}所示。可以观察到：整体衍射图样与未旋转任一卷积件时情形相似，仅发生了整体的旋转。这就验证了之前归纳的结论。
 
 \subsection{光学微分}
 
@@ -695,13 +732,13 @@ $$
 
 \section{部分实验数据}
 
-\begin{table}[H]
+\begin{table*}[H]
     \centering
     \captionnamefont{\wuhao\bf\heiti}
     \captiontitlefont{\wuhao\bf\heiti}
     \caption{空间成分滤波（一维光栅）实验数据记录} \label{tab:data_1d_filter}
     \liuhao
-    \begin{tabular}{c p{5cm} p{5cm}}
+    \begin{tabular}{c p{5cm} p{5cm} p{5cm}}
         \toprule
         滤波情况（通过的衍射级） & 像面图像特征（定性描述） & 备注（条纹周期等） \\
         \midrule
@@ -713,7 +750,7 @@ $$
         全部通过 & 条纹清晰，边缘锐利，接近方波 & 周期 $d \approx 1/f_0$ \\ 
         \bottomrule
     \end{tabular}
-\end{table}
+\end{table*}
 
 \begin{table}[H]
     \centering
