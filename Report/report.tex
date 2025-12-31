@@ -1,4 +1,5 @@
 \documentclass[draft]{Report/thuemp}
+% \documentclass{Report/thuemp}
 \begin{document}
 
 % 标题，作者
@@ -39,15 +40,593 @@ This experiment systematically investigated the fundamental principles of Fourie
 %  正文由此开始
 \wuhao 
 %  分栏开始
-
+ 
 \section{实验仪器}
-\enlargethispage{-3.3cm}
+\enlargethispage{-2.0cm}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Prep/spatial-filter.png}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{空间滤波实验光路示意图\cite{geModPhysLab2020opticInformation}}
+    \label{fig:setup}
+\end{figure*}
 
 本实验使用氦氖激光器（ $\lambda=632.8\ \mathrm{nm}$ ）作为相干光源，搭建如图 \ref{fig:setup} 所示的空间滤波实验光路。激光束经 $\mathrm{L_1}$ 扩束、$\mathrm{L_2}$ 准直后形成平行光，照射位于物面上的透明物体。$\mathrm{L_3}$ 为傅里叶变换透镜（焦距 $F=16.0\ \mathrm{cm}$ ），其后焦面 F 即为频谱面，用于放置各种滤波器。像面位于与物面关于 $L_3$ 共轭的位置，此处放置一电荷耦合装置（Charge Coupled Device, CCD）用于观察和记录滤波后的图像。这一组装置被用于空间成分滤波实验和方向滤波实验。
 
-在 $\mathrm{L_3}$ 后方距离 $2F = 320 \ \mathrm{cm}$ 处，补充放置一焦距同为$F$的透镜 $\mathrm{L_4} $，并选择 $\mathrm{L_4}$ 后方距离$F$处作为像面，由此构成一个 $4F$ 系统。这一组装置被用于完成验证卷积定理、光学微分，以及$\theta$调制实验。
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Prep/4F-schematic.png}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{4F光学系统示意图\cite{geModPhysLab2020opticInformation}}
+    \label{fig:4f}
+\end{figure*}
 
-在以上实验装置中，透镜 $\mathrm{L_3}$ 均为在光学上实现光场傅里叶变换的核心器件。在薄透镜近似下，透镜作用相当于为从不同位置透过透镜的光添加一个额外相位$\Delta \varphi$。取图【】所示坐标系，考察一束平行光入射后会聚到焦点上的情形。根据费马（Fermat）原理，可以写出
+在 $\mathrm{L_3}$ 后方距离 $2F = 32.0 \ \mathrm{cm}$ 处，补充放置一焦距同为$F$的透镜 $\mathrm{L_4} $，并选择 $\mathrm{L_4}$ 后方距离$F$处作为像面，由此构成一个 $4F$ 系统，如图\ref{fig:4f}。这一组装置被用于完成验证卷积定理、光学微分，以及$\theta$调制实验。
+
+在以上实验装置中，透镜 $\mathrm{L_3}$ 均为在光学上实现光场傅里叶变换的核心器件：在透镜 $\mathrm{L_3}$ 的后焦面上，光场分布 $G(x', y')$ 与物面光场分布 $g(x,y)$ 之间满足傅里叶变换关系：
+
+\begin{align}
+    G(x', y') \propto \mathcal{F}\bigl\{g(x,y)\bigr\} \Bigl(f_x = \frac{x'}{\lambda F}, f_y = \frac{y'}{\lambda F}\Bigr)
+\end{align}
+
+其中参数$f_x, f_y$分别为物面光场沿$x$和$y$方向的空间频率，而通过$f_x = x'/\lambda F, f_y = y'/\lambda F$的关系式与透镜 $\mathrm{L_3}$ 的后焦面上的空间点联系，$\mathrm{L_3}$ 的后焦面因而被称为为空间频谱面。
+
+以上述傅里叶变换关系为基础，开展以下各项实验。
+
+\section{实验内容}
+ 
+
+\subsection{空间成分滤波}
+使用一维光栅（$10\ \textrm{mm}^{-1}$），条纹沿竖直方向放置，构建物面光场。在频谱面 $F$ 处预期可观察到水平排列的衍射图样，也即物面光场的空间频率分布。
+
+使用硬纸打孔，按下列情况分别允许特定空间频率成分通过，在像面借助CCD观察并记录条纹间距和形貌的变化，进行比较：
+
+\begin{itemize}
+    \item A组：分别通过 (0, $\pm 1$ 级)、(0, $\pm 2$ 级)，以及不加滤波器；
+    \item B组：分别通过 (0, +1 级)、(0, $\pm 1$, $\pm 2$ 级)，以及不加滤波器；
+    \item C组：分别通过 (仅 0 级)、(除 0 级外所有)，以及不加滤波器。
+\end{itemize}
+
+其中，A组和B组用于分析不同频率成分对图像周期和形貌的影响，C组用于分析零频分量对图像的影响。
+
+\subsection{方向滤波}
+在物面放置正交光栅（“光”字屏），观察其二维点阵频谱。同样利用硬纸开孔，分别只允许以下方向的频谱分量通过：
+
+\begin{itemize}
+    \item 竖直方向（即只通过频谱的水平分量）；
+    \item 水平方向（即只通过频谱的竖直分量）；
+    \item $\pm 45^\circ$ 斜方向。
+\end{itemize}
+
+继续在像面借助CCD观察并记录像面图像的变化，分析频谱方向与图像特征方向的关系；进而使用图像分析软件，测量水平条纹与$45^\circ$斜方向条纹的空间周期之比。
+
+\subsection{验证卷积定理}
+
+傅里叶变换的重要性质之一为卷积定理。对于函数 $g_1(x,y)$ 和 $g_2(x,y)$，其卷积定义为：
+
+\begin{align}
+        \bigl(g_1 \ast g_2\bigr) & (x,y) % Very special alignment here.
+    \notag \\
+        =
+        &
+        \iint \mathrm{d}x' \mathrm{d}y' \ g_1(x', y') g_2(x-x', y-y')
+\end{align}
+
+卷积定理指出，函数的卷积在频域中对应于各自傅里叶变换的乘积：
+
+\begin{align}
+    \mathcal{F}\bigl\{g_1 \ast g_2\bigr\} = \mathcal{F}\bigl\{g_1\bigr\} \cdot \mathcal{F}\bigl\{g_2\bigr\}
+\end{align}
+
+使用图\ref{fig:4f}所示的 $4F$ 系统，在频谱面上单独放置透明卷积件时，其振幅透光率函数 $G_i(\xi,\eta) \quad (i = 1, 2) $ 的傅里叶变换即为物面光场 $g_i(x,y)$。若将两个卷积件依次密接放置在频谱面上，可观察像面图像 $g(x,y)$，验证其是否等于各自物面光场的卷积，进而达到验证卷积定理的目的。
+
+考虑到卷积运算的难度，本部分实验中选择两块二维光栅作为卷积件，以简化验证过程；通过分别转动两块光栅，实现对两个原函数 $g_1(x,y)$ 和 $g_2(x,y)$ 的改变，以更充分地验证卷积定理。
+
+根据上述理论预测，在像面上观测到的衍射图样应是，以其中一块卷积件形成的点阵图样为基本单元，根据另一块卷积件的空间周期和方向进行重复排列所形成的图样。
+
+\subsection{光学微分}
+
+在频谱面引入复合光栅作为滤波器，其振幅透光率中包含两个频率成分：
+\begin{align}
+        H(\xi, \eta) = 
+        &
+        H_0 + H_1\cos (2\pi f_1 \xi + \varphi_1)
+        \notag \\
+        &
+        + H_2\cos (2\pi f_2 \xi + \varphi_2)
+\end{align}
+
+考察复合光栅的两个频率成分各自给出的$+1$级像（以$x'_{1,2} = f_{1,2}/\lambda F$为中心）；借助卷积定理，考察以下情形：$f_2 = f_1 + \Delta f, \Delta f \ll f_1$，并且$H_1=H_2, \varphi_1 - \varphi_2 = (2k+1)\pi \quad (k\in \mathbb{Z})$则可以得到：
+\begin{align}
+        & g_{+1} (x', y')
+    \notag \\
+        =
+        &
+        \frac{H_1}{2} \Bigl[
+            g\Bigl(x' - \frac{f_1}{\lambda F}, y'\Bigr) -
+            g\Bigl(x' - \frac{f_1 + \Delta f}{\lambda F}, y'\Bigr)
+        \Bigr] e^{i\varphi_1}
+    \notag \\
+        \approx
+        &
+        - e^{i\varphi_1} \frac{H_1 \Delta f}{2 \lambda F} \frac{\partial g}{\partial x'} \Bigl(x' - \frac{f_1}{\lambda F}, y'\Bigr)
+\end{align}
+
+这表明，在上述条件下，复合光栅的$+1$级像近似为物面图像在$x$方向的微分。同理可得$-1$级像也具有类似的微分特性。
+
+本实验中，在物面放置以图片，在频谱面 F 处放置复合正弦光栅（$f_1=100\ \textrm{mm}^{-1}$, $f_2=102\ \textrm{mm}^{-1}$）作为空间滤波器，在像面 $\pm 1$ 级衍射像处，预期可观察到图像的微分效果。垂直于光轴缓慢平移复合光栅，寻找并记录使 $\pm 1$ 级像的边缘轮廓最清晰的位置，拍摄记录。
+
+\subsection{\texorpdfstring{$\theta$}{theta} 调制}
+$\theta$片由多块不同取向的一维光栅拼成。使用白光入射，频谱面上依各个光栅取向形成一系列不同颜色的衍射光斑阵列。在频谱面上叠加孔阵滤波器，在各个方向上保留适当颜色的$\pm 1$级衍射斑；在像面上将会看到，不同区域按照光栅取向和衍射斑所在方向进行对应，获得了相对应的颜色。
+
+本实验中，$\theta$片为一块由三个取向光栅拼成的风景图样，三个光栅取向两两互成 $60^\circ$ 角，空间频率均为 $100\ \textrm{mm}^{-1}$。同样使用硬纸打孔制作滤波器，在频谱面上仅允许三个方向的 $\pm 1$ 级衍射斑通过，在像面上观察并记录彩色图像。
+
+\section{实验结果与分析}
+
+\subsection{空间成分滤波}
+
+% A组对比分析
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
+        \subcaption{不加滤波器}
+        \label{fig:spatial_filter_a_base}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm1_only.png}
+        \subcaption{仅允许(0, $\pm 1$ 级)通过}
+        \label{fig:spatial_filter_a_pm1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm2_only.png}
+        \subcaption{仅允许(0, $\pm 2$ 级)通过}
+        \label{fig:spatial_filter_a_pm2}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{空间成分滤波实验结果A组对比图}
+    \label{fig:spatial_filter_a}
+\end{figure*}
+
+空间成分滤波A组对比如图\ref{fig:spatial_filter_a}所示。相比较于不放滤波器情形，可以观察到：仅保留$0, \pm 1 $级频率成分所得到的图像中，衍射条纹周期与不放置滤波器时相当，而条纹的明暗交界处则变得较为模糊；仅保留$0, \pm 2$级频率成分所得到的图像中，衍射条纹周期减小至不放置滤波器时的大约一半，并同样出现条纹明暗交界处变模糊的现象。
+
+通过A组对比可以看出：保留不同级次的衍射光，会直接影响像面条纹的周期和清晰度。当仅保留 $0, \pm 1$ 级时，图像保持了与原光栅相同的空间周期（$d \approx 1/f_0$），因为 $\pm 1$ 级衍射对应于光栅的基频；而当仅保留 $0, \pm 2$ 级时，像面条纹周期减半（$d' \approx 1/(2f_0)$），这是因为 $\pm 2$ 级对应的是二倍频率成分。两种情况下条纹边缘均较为模糊，提示单一频率成分不足以完整重建物体的细节结构。这一点将在接下来的B组对比中得到进一步说明。
+
+% B组对比分析
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
+        \subcaption{不加滤波器}
+        \label{fig:spatial_filter_b_base}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm1_only.png}
+        \subcaption{仅允许(0, $\pm 1$ 级)通过}
+        \label{fig:spatial_filter_b_pm1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm2_only.png}
+        \subcaption{仅允许(0, $\pm 1$, $\pm 2$ 级)通过}
+        \label{fig:spatial_filter_b_pm1_pm2}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{空间成分滤波实验结果B组对比图}
+    \label{fig:spatial_filter_b}
+\end{figure*}
+
+空间成分滤波B组对比如图\ref{fig:spatial_filter_b}所示。相比较于不放滤波器情形，仅保留$0, \pm 1$级，以及仅保留$0, \pm 1, \pm 2$级的情形，衍射条纹的间距均未发生显著改变，而条纹的明暗交界处仍然以不放滤波器最为清晰，仅保留$0, \pm 1$级的情形中，条纹的明暗交界处则变得最为模糊，仅保留$0, \pm 1, \pm 2$级的情形中，条纹的明暗交界清晰程度则介于两者之间。
+
+通过B组对比可以看出，增加更多的频率成分可以提升图像的清晰度和保真度。保留的频率成分越多，图像的边缘越锐利，越接近原始物体的形貌。这是因为高频成分主要贡献了图像的边缘和细节信息，而低频成分则主要贡献了图像的整体轮廓和大尺度结构。
+
+% C组对比分析
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
+        \subcaption{不加滤波器}
+        \label{fig:spatial_filter_c_base}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_only.png}
+        \subcaption{仅允许 0 级通过}
+        \label{fig:spatial_filter_c_0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_excluded.png}
+        \subcaption{滤除 0 级（所有其他级通过）}
+        \label{fig:spatial_filter_c_no0}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{空间成分滤波实验结果C组对比图}
+    \label{fig:spatial_filter_c}
+\end{figure*}
+
+空间成分滤波C组对比如图\ref{fig:spatial_filter_c}所示。仅保留 0 级频率成分时，像面呈呈现亮背景，完全看不到原先在$x$轴方向表现出的周期性条纹结构，而仅能见到若干杂散的干涉条纹；而滤除 0 级、保留所有其他高频成分时，像面仍可观察到清晰的条纹结构，但条纹整体亮度以及衬比度显著降低。
+
+这一结果表明：0 级频率成分（零频分量）对应于物体的平均透光率，决定了图像的整体亮度和背景；而高阶频率成分则携带了物体的周期性结构和细节信息。去除零频分量相当于实现了高通滤波，可以突出图像的边缘和快速变化的细节，但会损失直流背景信息。
+
+综合A、B、C三组实验结果可以看出：图像的周期性特征由最低阶非零频率成分（$\pm 1$ 级）决定；图像的清晰度和细节则需要更多的高频成分来重建；零频分量则决定了图像的整体亮度。这充分验证了傅里叶光学中物面图像与频谱面空间频率分布之间的对应关系，也直观展示了空间滤波在图像处理中的作用机制。
+
+\subsection{方向滤波}
+
+\begin{figure*}[htbp]
+    \centering % 全局居中，让每一行都在页面中间
+    
+    % --- 设置参数 ---
+    % 定义子图宽度 (例如 0.3\textwidth，保证 3张图 + 间距 < 1.0\textwidth)
+    % 0.3 * 3 = 0.9，剩下 10% 空间留给间距和边距
+    
+    % --- 第一排：3张图 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/002/2dim_baseline_02.png}
+        \subcaption{不加滤波器}
+        \label{fig:directional_filter_baseline}
+    \end{subfigure}% 
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/002/2dim_horizontal.png}
+        \subcaption{仅允许水平频率}
+        \label{fig:directional_filter_horizontal}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/002/2dim_vertical.png}
+        \subcaption{仅允许竖直频率}
+        \label{fig:directional_filter_vertical}
+    \end{subfigure}
+    
+    % --- 换行并添加垂直间距 ---
+    \vspace{1em}
+    
+    % --- 第二排：2张图 ---
+    % 由于外层有 \centering，这两张图会自动整体居中
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/002/2dim_plus45.png}
+        \subcaption{仅允许 $45^\circ$ 方向}
+        \label{fig:directional_filter_plus45}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/002/2dim_minus45.png}
+        \subcaption{仅允许 $-45^\circ$ 方向}
+        \label{fig:directional_filter_minus45}
+    \end{subfigure}
+    
+    % --- 总标题 ---
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{方向滤波实验结果图}
+    \label{fig:directional_filter}
+\end{figure*}
+
+
+% 图像空间频率成分对比
+\begin{table*}[htbp]
+    \centering
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{方向滤波实验结果对比表} \label{tab:directional_filter_results}
+    \begin{tabular}{cccc}
+        \toprule
+        滤波器设置 & 条纹方向 & 空间周期（px） & 定性描述 \\
+        \midrule
+        \multirow{2}{*}{无滤波器}
+                & 水平 & $72.3$ & \multirow{2}{*}{二维点阵} \\
+                & 竖直 & $72.3$ & \\
+        仅水平频率 & 水平 & $72.2$ & 干涉条纹，沿水平方向铺展 \\
+        仅竖直频率 & 竖直 & $72.4$ & 干涉条纹，沿竖直方向铺展 \\
+        仅 $45^\circ$ 频率 & $45^\circ$ & $51.1$ & 干涉条纹，沿 $45^\circ$ 方向铺展 \\
+        仅 $-45^\circ$ 频率 & $-45^\circ$ & $51.1$ & 干涉条纹，沿 $-45^\circ$ 方向铺展 \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
+方向滤波实验结果如图\ref{fig:directional_filter}所示，衍射图样使用Adobe Photoshop软件标尺工具进行测量，得到了各个频率成分对应的空间周期信息，列于表\ref{tab:directional_filter_results}中。
+
+从表中可以看出，不同的滤波器设置对图像的频率成分和空间周期产生了显著影响。无滤波器情况下，图像包含所有频率成分，呈现出清晰的二维点阵结构；而在仅保留特定方向频率的情况下，图像的条纹方向和空间周期则发生了相应的变化。其中，仅保留水平、竖直方向频率的，干涉条纹沿相应方向铺展，空间周期与未加滤波器时对应方向的一致，约为$d_0 \approx 72.2 \text{px}$。而$\pm 45^\circ$ 方向排列的条纹空间周期均为 $d_{\pm 45^\circ} \approx 51.1 \text{ px}$ ，满足关系：
+
+\begin{equation}
+d_{\pm 45^\circ} \approx \frac{d_0}{\sqrt{2}}
+\end{equation}  
+
+注意到，对于空间频率$f_0$的二维光栅，仅允许$\pm 45^\circ$通过时，其频率成分来自未加滤波器时的$f_x = nf_0, f_y = nf_0 \space(n\in \mathbb{Z})$成分，也即有：
+
+\begin{equation}
+    f_{\pm 45^\circ} = \sqrt{f_x^2 + f_y^2} = \sqrt{(nf_0)^2 + (nf_0)^2} = \sqrt{2}nf_0
+\end{equation}
+
+这就解释了为什么在仅允许$\pm 45^\circ$方向的情况下，图像的空间周期变为$d_0/\sqrt{2}$。
+
+\subsection{验证卷积定理}
+
+\begin{figure*}
+
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_1.png}
+        \subcaption{卷积件1}
+        \label{fig:convolution_base_1}
+    \end{subfigure}
+    \hspace{0.03\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_2.png}
+        \subcaption{卷积件2}
+        \label{fig:convolution_base_2}
+    \end{subfigure}
+    \hspace{0.03\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/003-pattern/conv_344_164.png}
+        \caption{卷积件1,2密接同向放置}
+        \label{fig:convolution_baseline}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{卷积件1,2单独放置以及两者密接同向放置所得衍射图样}
+    \label{fig:convolution_base}
+\end{figure*}
+
+将两块卷积件各自置于频谱面，在像面可观测到二维点阵的衍射图样，如图\ref{fig:convolution_base}(\subref{fig:convolution_base_1})至\ref{fig:convolution_base}(\subref{fig:convolution_base_2})所示；在两块卷积件密接同向放置时，如图\ref{fig:convolution_base}(\subref{fig:convolution_baseline})所示，能够观察到卷积件2对应的较为细密的衍射图样，以卷积件1衍射图样对应的空间周期以及方向进行排布，并可估计卷积件1, 2光栅常数$d_{1,2}$有以下关系：
+
+\begin{equation}
+    d_1 : d_2 \approx 1 : 4
+\end{equation}
+
+% 卷积件1依次转过0, 30, 45, 60, 90度，五张图“上三下二”排布
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
+        \subcaption{$+0^\circ$}
+        \label{fig:convolution_rot_01_00deg}
+    \end{subfigure}% 
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_014_164.png}
+        \subcaption{$+30^\circ$}
+        \label{fig:convolution_rot_01_30deg}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_029_164.png}
+        \subcaption{$+45^\circ$}
+        \label{fig:convolution_rot_01_45deg}
+    \end{subfigure}
+    
+    % --- 换行并添加垂直间距 ---
+    \vspace{1em}
+    
+    % --- 第二排：2张图 ---
+    % 由于外层有 \centering，这两张图会自动整体居中
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_044_164.png}
+        \subcaption{$+60^\circ$}
+        \label{fig:convolution_rot_01_60deg}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_074_164.png}
+        \subcaption{$+90^\circ$}
+        \label{fig:convolution_rot_01_90deg}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{单独旋转卷积件1至不同角度所得衍射图样}
+    \label{fig:convolution_rot_01}
+\end{figure*}
+
+先后单独转动卷积件1至一系列不同角度，可观察到：与卷积件2相关联的小周期衍射图样整体形貌、取向以及周期均未发生显著变化；这些小周期衍射图样排布的取向则伴随卷积件1的旋转而变化。
+
+% 卷积件2依次转过0, 30, 45, 60, 90度，五张图“上三下二”排布
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
+        \subcaption{$+0^\circ$}
+        \label{fig:convolution_rot_02_00deg}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_194.png}
+        \subcaption{$+30^\circ$}
+        \label{fig:convolution_rot_02_30deg}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_209.png}
+        \subcaption{$+45^\circ$}
+        \label{fig:convolution_rot_02_45deg}
+    \end{subfigure}
+
+    % --- 换行并添加垂直间距 ---
+    \vspace{1em}
+
+    % --- 第二排：2张图 ---
+    % 由于外层有 \centering，这两张图会自动整体居中
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_224.png}
+        \subcaption{$+60^\circ$}
+        \label{fig:convolution_rot_02_60deg}
+    \end{subfigure}%
+    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_254.png}
+        \subcaption{$+90^\circ$}
+        \label{fig:convolution_rot_02_90deg}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{单独旋转卷积件2至不同角度所得衍射图样}
+    \label{fig:convolution_rot_02}
+\end{figure*}
+
+先后单独旋转卷积件2至一系列不同角度，可观察到：与卷积件2相关联的小周期衍射图样整体形貌不变，取向伴随其旋转而变化；与卷积件1相关联的这些小周期图样的排布取向以及空间周期均无显著变化。
+
+经观察，注意到以下特性：
+
+\begin{enumerate}
+    \item 卷积件1,2各自旋转$90^\circ$，对应的衍射图样不变，提示卷积件1,2各自具有$C_4$旋转对称性；
+    \item 图\ref{fig:convolution_rot_01}(\subref{fig:convolution_rot_01_60deg})与图\ref{fig:convolution_rot_02}(\subref{fig:convolution_rot_02_30deg})，图\ref{fig:convolution_rot_01}(\subref{fig:convolution_rot_01_45deg})与图\ref{fig:convolution_rot_02}(\subref{fig:convolution_rot_02_45deg})，图\ref{fig:convolution_rot_01}(\subref{fig:convolution_rot_01_30deg})与图\ref{fig:convolution_rot_02}(\subref{fig:convolution_rot_02_60deg})三组图像中，卷积件1,2旋转角度互为补角$90^\circ$，对应的衍射图样相似，提示整体衍射图样仅与卷积件1,2的相对取向有关。
+\end{enumerate}
+
+% 卷积件1, 2依次同步转过0, 30, 45, 60度，四张图“上二下二”排布
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
+        \subcaption{$+0^\circ$}
+        \label{fig:convolution_rot_both_00deg}
+    \end{subfigure}
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_014_194.png}
+        \subcaption{$+30^\circ$}
+        \label{fig:convolution_rot_both_30deg}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_029_209.png}
+        \subcaption{$+45^\circ$}
+        \label{fig:convolution_rot_both_45deg}
+    \end{subfigure}
+    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_044_224.png}
+        \subcaption{$+60^\circ$}
+        \label{fig:convolution_rot_both_60deg}
+    \end{subfigure}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{同步旋转卷积件1,2至不同角度所得衍射图样}
+    \label{fig:convolution_rot_both}
+\end{figure*}
+
+为验证以上的第2点观察，进一步完善实验，将两块卷积件同步转动至一系列角度，并记录相应的衍射图样，如图\ref{fig:convolution_rot_both}(\subref{fig:convolution_rot_both_00deg})至图\ref{fig:convolution_rot_both}(\subref{fig:convolution_rot_both_60deg})所示。可以观察到：整体衍射图样与未旋转任一卷积件时情形相似，仅发生了整体的旋转。这就验证了之前归纳的结论。
+
+\subsection{光学微分}
+
+% 插入单张Data/003-pattern/differential.png
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Data/003-pattern/differential.png}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \caption{光学微分实验结果图}
+    \label{fig:differential}
+\end{figure*}
+
+实验中使用一个“S”型光阑作为物，在零级处可以看到其原始的形状；在$\pm 1$级处则可观察到作为目标的光学微分像：其沿竖直方向走行的边界均被突出，形成了明显的对比，但沿水平方向走行的边界则较为模糊。这是符合预期的，因为所使用的光栅的空间周期对应排布方向为水平方向，故而所提取的振幅微分是对水平方向取微分，最能突出的边界也就对应为竖直方向；相比之下，水平方向走行的边界并无明显对比。
+
+在$\pm 1$级之外，本实验中还可在$\pm 2$级处观察到相应的光学微分像，其特征与$\pm 1$级相似，但整体亮度与衬比度均有所降低。
+
+\subsection{\texorpdfstring{$\theta$}{theta} 调制}
+
+% Data/pseudo_colour.png为调制结果
+% Data/theta-modulation_diff_pattern为频谱面衍射图样
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/pseudo_colour.png}
+        \subcaption{像面彩色图像}
+        \label{fig:theta_modulation_image}
+    \end{subfigure}
+    \hspace{0.05\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Data/theta-modulation_diff_pattern.png}
+        \subcaption{频谱面衍射图样}
+        \label{fig:theta_modulation_spectrum}
+    \end{subfigure}
+    \caption{ $\theta$ 调制实验结果图}
+    \captionnamefont{\wuhao\bf\heiti}
+    \captiontitlefont{\wuhao\bf\heiti}
+    \label{fig:theta_modulation}
+\end{figure*}
+
+使用白光入射提供的物片，获得的频谱面信息如\ref{fig:theta_modulation}(\subref{fig:theta_modulation_spectrum})所示。通过遮挡比对，可分析出各个空间频率方向所对应的成像区域，并且制作滤波器，选择适当颜色光进行上色。这里选择将城楼门、天空、草地分别处理为红色、蓝色、绿色，所得到的像面图像如图\ref{fig:theta_modulation}(\subref{fig:theta_modulation_image})所示。上色效果较好，验证了$\theta$调制的可行性。
+
+颇为有趣的是，上述结果实说明，各个取向光栅区块的具体形状信息，经过最初的傅里叶变换透镜后，被集中在了频谱面上的这些光斑内。这就提示了综合利用透镜的傅里叶变换性质以及全息术等其他技术进行高密度信息存储的可能。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  参考文献按GB/T 7714－2015《文后参考文献著录规则》的要求著录. 
+%  参考文献在正文中的引用方法：\cite{bib文件条目的第一行}
+
+\renewcommand\refname{\heiti\wuhao\centerline{参考文献}\global\def\refname{参考文献}}
+\vskip 12pt
+
+
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+
+{
+\renewcommand{\baselinestretch}{0.9}
+\liuhao
+\bibliographystyle{gbt7714-numerical}
+\bibliography{./Report/report}
+}
+
+\appendix
+
+\section{部分实验原理推导}
+
+\subsection{透镜的傅里叶变换性质}
+
+在薄透镜近似下，透镜作用相当于为从不同位置透过透镜的光添加一个额外相位$\Delta \varphi$。取频谱面坐标系$\xi O''\eta$，其中$\xi$轴与$x,x'$轴平行，$\eta$轴与$y,y'$轴平行，考察一束平行光入射后会聚到焦点上的情形。根据费马（Fermat）原理，可以写出
 
 \begin{align}
     \Delta \varphi (\xi, \eta) + k \sqrt{\xi^2+\eta^2+F^2} = \text{Const.}
@@ -172,62 +751,9 @@ This experiment systematically investigated the fundamental principles of Fourie
     G(x', y') \propto \mathcal{F}\bigl\{g(x,y)\bigr\} \Bigl(f_x = \frac{x'}{\lambda F}, f_y = \frac{y'}{\lambda F}\Bigr)
 \end{align}
 
-其中参数$f_x, f_y$分别为物面光场沿$x$和$y$方向的空间频率，而通过$f_x = \frac{x'}{\lambda F}, f_y = \frac{y'}{\lambda F}$的关系式与透镜 $\mathrm{L_3}$ 的后焦面上的空间点联系，$\mathrm{L_3}$ 的后焦面因而被称为为空间频谱面。
+其中参数$f_x, f_y$分别为物面光场沿$x$和$y$方向的空间频率，而通过$f_x = x'/\lambda F, f_y = y'/\lambda F$的关系式与透镜 $\mathrm{L_3}$ 的后焦面上的空间点联系，$\mathrm{L_3}$ 的后焦面因而被称为为空间频谱面。
 
-以上述傅里叶变换关系为基础，开展以下各项实验。
-
-\section{实验内容}
- 
-
-\subsection{空间成分滤波}
-使用一维光栅（$10\ \textrm{线/mm}$），条纹沿竖直方向放置，构建物面光场。在频谱面 $F$ 处预期可观察到水平排列的衍射图样，也即物面光场的空间频率分布。
-
-使用硬纸打孔，按下列情况分别允许特定空间频率成分通过，在像面借助CCD观察并记录条纹间距和形貌的变化，进行比较：
-
-\begin{itemize}
-    \item A组：分别通过 (0, $\pm 1$ 级)、(0, $\pm 2$ 级)，以及不加滤波器；
-    \item B组：分别通过 (0, +1 级)、(0, $\pm 1$, $\pm 2$ 级)，以及不加滤波器；
-    \item C组：分别通过 (仅 0 级)、(除 0 级外所有)，以及不加滤波器。
-\end{itemize}
-
-其中，A组和B组用于分析不同频率成分对图像周期和形貌的影响，C组用于分析零频分量对图像的影响。
-
-\subsection{方向滤波}
-在物面放置正交光栅（“光”字屏），观察其二维点阵频谱。同样利用硬纸开孔，分别只允许以下方向的频谱分量通过：
-
-\begin{itemize}
-    \item 竖直方向（即只通过频谱的水平分量）；
-    \item 水平方向（即只通过频谱的竖直分量）；
-    \item $\pm 45^\circ$ 斜方向。
-\end{itemize}
-
-继续在像面借助CCD观察并记录像面图像的变化，分析频谱方向与图像特征方向的关系；进而使用图像分析软件，测量水平条纹与$45^\circ$斜方向条纹的空间周期之比。
-
-\subsection{验证卷积定理}
-
-傅里叶变换的重要性质之一为卷积定理。对于函数 $g_1(x,y)$ 和 $g_2(x,y)$，其卷积定义为：
-
-\begin{align}
-        \bigl(g_1 \ast g_2\bigr) & (x,y) % Very special alignment here.
-    \notag \\
-        =
-        &
-        \iint \mathrm{d}x' \mathrm{d}y' \ g_1(x', y') g_2(x-x', y-y')
-\end{align}
-
-卷积定理指出，函数的卷积在频域中对应于各自傅里叶变换的乘积：
-
-\begin{align}
-    \mathcal{F}\bigl\{g_1 \ast g_2\bigr\} = \mathcal{F}\bigl\{g_1\bigr\} \cdot \mathcal{F}\bigl\{g_2\bigr\}
-\end{align}
-
-使用图【】所示的 $4F$ 系统，在频谱面上单独放置透明卷积件时，其振幅透光率函数 $G_i(\xi,\eta) \quad (i = 1, 2) $ 的傅里叶变换即为物面光场 $g_i(x,y)$。若将两个卷积件依次密接放置在频谱面上，可观察像面图像 $g(x,y)$，验证其是否等于各自物面光场的卷积，进而达到验证卷积定理的目的。
-
-考虑到卷积运算的难度，本部分实验中选择两块二维光栅作为卷积件，以简化验证过程；通过分别转动两块光栅，实现对两个原函数 $g_1(x,y)$ 和 $g_2(x,y)$ 的改变，以更充分地验证卷积定理。
-
-根据上述理论预测，在像面上观测到的衍射图样应是，以其中一块卷积件形成的点阵图样为基本单元，根据另一块卷积件的空间周期和方向进行重复排列所形成的图样。
-
-\subsection{光学微分}
+\subsection{使用复合光栅实现微分运算}
 
 对于正弦光栅，其振幅透光率写成$ H(\xi, \eta) = H_0 + H_1\cos (2\pi f_0 \xi + \varphi_0)$ ，其傅里叶变换为：
 
@@ -280,7 +806,7 @@ This experiment systematically investigated the fundamental principles of Fourie
     \Bigr]
 \end{align}
 
-考察复合光栅的两个频率成分各自给出的$+1$级像（以$x' = \frac{f_{1,2}}{\lambda F}$为中心）；借助卷积定理得到，对应的像面光场为：
+考察复合光栅的两个频率成分各自给出的$+1$级像（以$x'_{1,2} = f_{1,2}/\lambda F$为中心）；借助卷积定理得到，对应的像面光场为：
 \begin{align}
         g_{+1} & (x', y')
     \notag \\
@@ -303,508 +829,10 @@ This experiment systematically investigated the fundamental principles of Fourie
     \notag \\
         \approx
         &
-        - \frac{H_1 \Delta f}{2 \lambda F} e^{i\varphi_1} \times \frac{\partial g}{\partial x'} \Bigl(x' - \frac{f_1}{\lambda F}, y'\Bigr)
+        - e^{i\varphi_1} \frac{H_1 \Delta f}{2 \lambda F} \frac{\partial g}{\partial x'} \Bigl(x' - \frac{f_1}{\lambda F}, y'\Bigr)
 \end{align}
 
 这表明，在上述条件下，复合光栅的$+1$级像近似为物面图像在$x$方向的微分。同理可得$-1$级像也具有类似的微分特性。
-
-本实验中，在物面放置以图片（形状如图【】所示），在频谱面 F 处放置复合正弦光栅（$f_1=100\ \textrm{线/mm}$, $f_2=102\ \textrm{线/mm}$）作为空间滤波器，在像面 $\pm 1$ 级衍射像处，预期可观察到图像的微分效果。垂直于光轴缓慢平移复合光栅，寻找并记录使 $\pm 1$ 级像的边缘轮廓最清晰的位置，拍摄记录。
-
-\subsection{\texorpdfstring{$\theta$}{theta} 调制}
-$\theta$片由多块不同取向的一维光栅拼成。使用白光入射，频谱面上依各个光栅取向形成一系列不同颜色的衍射光斑阵列。在频谱面上叠加孔阵滤波器，在适当的方向上保留适当颜色的$\pm 1$级衍射斑。在像面上，将能够得到一幅彩色图像。
-
-本实验中，$\theta$片为一块三个取向光栅拼成的风景图样，三个光栅取向两两互成 $60^\circ$ 角，空间频率均为 $100\ \textrm{线/mm}$。同样使用硬纸打孔制作滤波器，在频谱面上仅允许三个方向的 $\pm 1$ 级衍射斑通过，在像面上观察并记录彩色图像。
-
-\section{实验结果与分析}
-
-\subsection{空间成分滤波}
-
-% A组对比分析
-
-\begin{figure*}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
-        \subcaption{不加滤波器}
-        \label{fig:spatial_filter_a_base}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm1_only.png}
-        \subcaption{仅允许(0, $\pm 1$ 级)通过}
-        \label{fig:spatial_filter_a_pm1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm2_only.png}
-        \subcaption{仅允许(0, $\pm 2$ 级)通过}
-        \label{fig:spatial_filter_a_pm2}
-    \end{subfigure}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \caption{空间成分滤波实验结果A组对比图}
-    \label{fig:spatial_filter_a}
-\end{figure*}
-
-空间成分滤波A组对比如图\ref{fig:spatial_filter_a}所示。相比较于不放滤波器情形，可以观察到：仅保留$0, \pm 1 $级频率成分所得到的图像中，衍射条纹周期与不放置滤波器时相当，而条纹的明暗交界处则变得较为模糊；仅保留$0, \pm 2$级频率成分所得到的图像中，衍射条纹周期减小至不放置滤波器时的大约一半，并同样出现条纹明暗交界处变模糊的现象。
-
-通过A组对比可以看出：保留不同级次的衍射光，会直接影响像面条纹的周期和清晰度。当仅保留 $0, \pm 1$ 级时，图像保持了与原光栅相同的空间周期（$d \approx 1/f_0$），因为 $\pm 1$ 级衍射对应于光栅的基频；而当仅保留 $0, \pm 2$ 级时，像面条纹周期减半（$d' \approx 1/(2f_0)$），这是因为 $\pm 2$ 级对应的是二倍频率成分。两种情况下条纹边缘均较为模糊，提示单一频率成分不足以完整重建物体的细节结构。这一点将在接下来的B组对比中得到进一步说明。
-
-% B组对比分析
-
-\begin{figure*}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
-        \subcaption{不加滤波器}
-        \label{fig:spatial_filter_b_base}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm1_only.png}
-        \subcaption{仅允许(0, $\pm 1$ 级)通过}
-        \label{fig:spatial_filter_b_pm1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_pm2_only.png}
-        \subcaption{仅允许(0, $\pm 1$, $\pm 2$ 级)通过}
-        \label{fig:spatial_filter_b_pm1_pm2}
-    \end{subfigure}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \caption{空间成分滤波实验结果B组对比图}
-    \label{fig:spatial_filter_b}
-\end{figure*}
-
-空间成分滤波B组对比如图\ref{fig:spatial_filter_b}所示。相比较于不放滤波器情形，仅保留$0, \pm 1$级，以及仅保留$0, \pm 1, \pm 2$级的情形，衍射条纹的间距均未发生显著改变，而条纹的明暗交界处仍然以不放滤波器最为清晰，仅保留$0, \pm 1$级的情形中，条纹的明暗交界处则变得最为模糊，仅保留$0, \pm 1, \pm 2$级的情形中，条纹的明暗交界清晰程度则介于两者之间。
-
-通过B组对比可以看出，增加更多的频率成分可以提升图像的清晰度和保真度。保留的频率成分越多，图像的边缘越锐利，越接近原始物体的形貌。这是因为高频成分主要贡献了图像的边缘和细节信息，而低频成分则主要贡献了图像的整体轮廓和大尺度结构。
-
-% C组对比分析
-
-\begin{figure*}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-baseline.png}
-        \subcaption{不加滤波器}
-        \label{fig:spatial_filter_c_base}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_only.png}
-        \subcaption{仅允许 0 级通过}
-        \label{fig:spatial_filter_c_0}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/001/10_per_mm-0_excluded.png}
-        \subcaption{滤除 0 级（所有其他级通过）}
-        \label{fig:spatial_filter_c_no0}
-    \end{subfigure}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \caption{空间成分滤波实验结果C组对比图}
-    \label{fig:spatial_filter_c}
-\end{figure*}
-
-空间成分滤波C组对比如图\ref{fig:spatial_filter_c}所示。仅保留 0 级频率成分时，像面呈呈现亮背景，完全看不到原先在$x$轴方向表现出的周期性条纹结构，而仅能见到若干杂散的干涉条纹；而滤除 0 级、保留所有其他高频成分时，像面仍可观察到清晰的条纹结构，但条纹整体亮度以及对比度显著降低。
-
-这一结果表明：0 级频率成分（零频分量）对应于物体的平均透光率，决定了图像的整体亮度和背景；而高阶频率成分则携带了物体的周期性结构和细节信息。去除零频分量相当于实现了高通滤波，可以突出图像的边缘和快速变化的细节，但会损失直流背景信息。
-
-综合A、B、C三组实验结果可以看出：图像的周期性特征由最低阶非零频率成分（$\pm 1$ 级）决定；图像的清晰度和细节则需要更多的高频成分来重建；零频分量则决定了图像的整体亮度。这充分验证了傅里叶光学中物面图像与频谱面空间频率分布之间的对应关系，也直观展示了空间滤波在图像处理中的作用机制。
-
-\subsection{方向滤波}
-
-\begin{figure*}[htbp]
-    \centering % 全局居中，让每一行都在页面中间
-    
-    % --- 设置参数 ---
-    % 定义子图宽度 (例如 0.3\textwidth，保证 3张图 + 间距 < 1.0\textwidth)
-    % 0.3 * 3 = 0.9，剩下 10% 空间留给间距和边距
-    
-    % --- 第一排：3张图 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/002/2dim_baseline_02.png}
-        \subcaption{不加滤波器}
-        \label{fig:directional_filter_baseline}
-    \end{subfigure}% 
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/002/2dim_horizontal.png}
-        \subcaption{仅允许水平频率}
-        \label{fig:directional_filter_horizontal}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/002/2dim_vertical.png}
-        \subcaption{仅允许竖直频率}
-        \label{fig:directional_filter_vertical}
-    \end{subfigure}
-    
-    % --- 换行并添加垂直间距 ---
-    \vspace{1em}
-    
-    % --- 第二排：2张图 ---
-    % 由于外层有 \centering，这两张图会自动整体居中
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/002/2dim_plus45.png}
-        \subcaption{仅允许 $45^\circ$ 方向}
-        \label{fig:directional_filter_plus45}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/002/2dim_minus45.png}
-        \subcaption{仅允许 $-45^\circ$ 方向}
-        \label{fig:directional_filter_minus45}
-    \end{subfigure}
-    
-    % --- 总标题 ---
-    \caption{方向滤波实验结果图}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \label{fig:directional_filter}
-\end{figure*}
-
-
-% 图像空间频率成分对比
-\begin{table}
-    \centering
-    \caption{方向滤波实验结果对比表} \label{tab:directional_filter_results}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \begin{tabular}{cccc}
-        \toprule
-        滤波器设置 & 条纹方向 & 空间周期（px） & 定性描述 \\
-        \midrule
-        \multirow{2}{*}{无滤波器}
-                & 水平 & $72.3$ & \multirow{2}{*}{二维点阵} \\
-                & 竖直 & $72.3$ & \\
-        仅水平频率 & 水平 & $72.2$ & 干涉条纹，沿水平方向铺展 \\
-        仅竖直频率 & 竖直 & $72.4$ & 干涉条纹，沿竖直方向铺展 \\
-        仅 $45^\circ$ 频率 & $45^\circ$ & $51.1$ & 干涉条纹，沿 $45^\circ$ 方向铺展 \\
-        仅 $-45^\circ$ 频率 & $-45^\circ$ & $51.1$ & 干涉条纹，沿 $-45^\circ$ 方向铺展 \\
-    \end{tabular}
-\end{table}
-
-方向滤波实验结果如图\ref{tab:directional_filter_results}所示，衍射图样使用Adobe Photoshop软件标尺工具进行测量，得到了各个频率成分对应的空间周期信息，列于表\ref{tab:directional_filter_results}中。
-
-从表中可以看出，不同的滤波器设置对图像的频率成分和空间周期产生了显著影响。无滤波器情况下，图像包含所有频率成分，呈现出清晰的二维点阵结构；而在仅保留特定方向频率的情况下，图像的条纹方向和空间周期则发生了相应的变化。其中，仅保留水平、竖直方向频率的，干涉条纹沿相应方向铺展，空间周期与未加滤波器时对应方向的一致，约为$d_0 \approx 72.2 \text{px}$。而$\pm 45^\circ$ 方向排列的条纹空间周期均为 $d_{\pi/4} \approx 51.1 \text{ px}$ ，满足关系：
-
-\begin{equation}
-d_{\pi/4} \approx \frac{d_0}{\sqrt{2}}
-\end{equation}  
-
-注意到，对于空间频率$f_0$的二维光栅，仅允许$\pm 45^\circ$通过时，其频率成分来自未加滤波器时的$f_x = nf_0, f_y = nf_0 \space(n\in \mathbb{Z})$成分，也即有：
-
-$$
-f_{\pm 45^\circ} = \frac{f_x + f_y}{\sqrt{2}} = \frac{nf_0 + nf_0}{\sqrt{2}} = \sqrt{2}nf_0
-$$
-
-这就解释了为什么在仅允许$\pm 45^\circ$方向的情况下，图像的空间周期变为$\frac{d_0}{\sqrt{2}}$。
-
-\subsection{验证卷积定理}
-
-\begin{figure*}
-
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_1.png}
-        \subcaption{卷积件1}
-        \label{fig:convolution_base_1}
-    \end{subfigure}
-    \hspace{0.03\textwidth}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Data/003-pattern/conv_base_2.png}
-        \subcaption{卷积件2}
-        \label{fig:convolution_base_2}
-    \end{subfigure}
-    \hspace{0.03\textwidth}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Data/003-pattern/conv_344_164.png}
-        \caption{卷积件1,2密接同向放置}
-        \label{fig:convolution_baseline}
-    \end{subfigure}
-    \caption{卷积件1,2单独放置以及两者密接同向放置所得衍射图样}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \label{fig:convolution_base}
-\end{figure*}
-
-将两块卷积件各自置于频谱面，在像面可观测到二维点阵的衍射图样，如图\ref{fig:convolution_base_1}至\ref{fig:convolution_base_2}所示；在两块卷积件密接同向放置时，如图\ref{fig:convolution_baseline}所示，能够观察到卷积件2对应的较为细密的衍射图样，以卷积件1衍射图样对应的空间周期以及方向进行排布，并可估计卷积件1, 2光栅常数$d_{1,2}$有以下关系：
-
-\begin{equation}
-    d_1 : d_2 \approx 1 : 4
-\end{equation}
-
-% 卷积件1依次转过0, 30, 45, 60, 90度，五张图“上三下二”排布
-\begin{figure*}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
-        \subcaption{$+0^\circ$}
-        \label{fig:convolution_rot_01_00deg}
-    \end{subfigure}% 
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_014_164.png}
-        \subcaption{$+30^\circ$}
-        \label{fig:convolution_rot_01_30deg}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_029_164.png}
-        \subcaption{$+45^\circ$}
-        \label{fig:convolution_rot_01_45deg}
-    \end{subfigure}
-    
-    % --- 换行并添加垂直间距 ---
-    \vspace{1em}
-    
-    % --- 第二排：2张图 ---
-    % 由于外层有 \centering，这两张图会自动整体居中
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_044_164.png}
-        \subcaption{$+60^\circ$}
-        \label{fig:convolution_rot_01_60deg}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_074_164.png}
-        \subcaption{$+90^\circ$}
-        \label{fig:convolution_rot_01_90deg}
-    \end{subfigure}
-    \caption{单独旋转卷积件1至不同角度所得衍射图样}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \label{fig:convolution_rot_01}
-\end{figure*}
-
-先后单独转动卷积件1至一系列不同角度，可观察到：与卷积件2相关联的小周期衍射图样整体形貌、取向以及周期均未发生显著变化；这些小周期衍射图样排布的取向则伴随卷积件1的旋转而变化。
-
-% 卷积件2依次转过0, 30, 45, 60, 90度，五张图“上三下二”排布
-\begin{figure*}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
-        \subcaption{$+0^\circ$}
-        \label{fig:convolution_rot_02_00deg}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_194.png}
-        \subcaption{$+30^\circ$}
-        \label{fig:convolution_rot_02_30deg}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_209.png}
-        \subcaption{$+45^\circ$}
-        \label{fig:convolution_rot_02_45deg}
-    \end{subfigure}
-
-    % --- 换行并添加垂直间距 ---
-    \vspace{1em}
-
-    % --- 第二排：2张图 ---
-    % 由于外层有 \centering，这两张图会自动整体居中
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_224.png}
-        \subcaption{$+60^\circ$}
-        \label{fig:convolution_rot_02_60deg}
-    \end{subfigure}%
-    \hspace{0.03\textwidth}% --- 必须与第一排间距完全一致 ---
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_254.png}
-        \subcaption{$+90^\circ$}
-        \label{fig:convolution_rot_02_90deg}
-    \end{subfigure}
-    \caption{单独旋转卷积件2至不同角度所得衍射图样}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \label{fig:convolution_rot_02}
-\end{figure*}
-
-先后单独旋转卷积件2至一系列不同角度，可观察到：与卷积件2相关联的小周期衍射图样整体形貌不变，取向伴随其旋转而变化；与卷积件1相关联的这些小周期图样的排布取向以及空间周期均无显著变化。
-
-经观察，注意到以下特性：
-
-\begin{enumerate}
-    \item 卷积件1,2各自旋转$90^\circ$，对应的衍射图样不变，提示卷积件1,2各自具有$C_4$旋转对称性；
-    \item 图\ref{fig:convolution_rot_01_60deg}与图\ref{fig:convolution_rot_02_30deg}，图\ref{fig:convolution_rot_01_45deg}与\ref{fig:convolution_rot_02_45deg}，图\ref{fig:convolution_rot_01_30deg}与图\ref{fig:convolution_rot_02_60deg}三组图像中，卷积件1,2旋转角度互为补角$90^\circ$，对应的衍射图样相似，提示整体衍射图样仅与卷积件1,2的相对取向有关。
-\end{enumerate}
-
-% 卷积件1, 2依次同步转过0, 30, 45, 60度，四张图“上二下二”排布
-\begin{figure*}
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_344_164.png}
-        \subcaption{$+0^\circ$}
-        \label{fig:convolution_rot_both_00deg}
-    \end{subfigure}
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_014_194.png}
-        \subcaption{$+30^\circ$}
-        \label{fig:convolution_rot_both_30deg}
-    \end{subfigure}
-
-    \vspace{1em}
-
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_029_209.png}
-        \subcaption{$+45^\circ$}
-        \label{fig:convolution_rot_both_45deg}
-    \end{subfigure}
-    \hspace{0.03\textwidth}% --- 固定的水平间距 ---
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Data/003-pattern/conv_044_224.png}
-        \subcaption{$+60^\circ$}
-        \label{fig:convolution_rot_both_60deg}
-    \end{subfigure}
-\end{figure*}
-
-为验证以上的第2点观察，进一步完善实验，将两块卷积件同步转动至相同角度，并记录相应的衍射图样，如图\ref{fig:convolution_rot_both_00deg}至图\ref{fig:convolution_rot_both_60deg}所示。可以观察到：整体衍射图样与未旋转任一卷积件时情形相似，仅发生了整体的旋转。这就验证了之前归纳的结论。
-
-\subsection{光学微分}
-
-% 插入单张Data/003-pattern/differential.png
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{Data/003-pattern/differential.png}
-    \caption{光学微分实验结果图}
-    \label{fig:differential}
-\end{figure}
-
-实验中使用一个“S”型光阑作为物，在零级处可以看到其原始的形状；在$\pm 1$级处则可观察到作为目标的光学微分像：其沿竖直方向走行的边界均被突出，形成了明显的对比，但沿水平方向走行的边界则较为模糊。这是符合预期的，因为所使用的光栅的空间周期对应排布方向为水平方向，故而所提取的振幅微分是对水平方向取微分，最能突出的边界也就对应为竖直方向；相比之下，水平方向走行的边界并无明显对比。
-
-在$\pm 1$级之外，本实验中还可在$\pm 2$级处观察到相应的光学微分像，其特征与$\pm 1$级相似，但整体亮度与对比度均有所降低。
-
-\subsection{\texorpdfstring{$\theta$}{theta} 调制}
-
-% Data/pseudo_colour.png为调制结果
-% Data/theta-modulation_diff_pattern为频谱面衍射图样
-\begin{figure*}
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Data/pseudo_colour.png}
-        \subcaption{像面彩色图像}
-        \label{fig:theta_modulation_image}
-    \end{subfigure}
-    \hspace{0.05\textwidth}
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Data/theta-modulation_diff_pattern.png}
-        \subcaption{频谱面衍射图样}
-        \label{fig:theta_modulation_spectrum}
-    \end{subfigure}
-    \caption{ $\theta$ 调制实验结果图}
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \label{fig:theta_modulation}
-\end{figure*}
-
-使用白光入射提供的物片，获得的频谱面信息如图\ref{fig:theta_modulation_spectrum}所示。通过遮挡比对，可分析出各个空间频率方向所对应的成像区域，并且制作滤波器，选择适当颜色光进行上色。这里选择将城楼门、天空、草地分别处理为红色、蓝色、绿色，所得到的像面图像如图\ref{fig:theta_modulation_image}所示。上色效果较好，验证了$\theta$调制的可行性。
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  参考文献
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  参考文献按GB/T 7714－2015《文后参考文献著录规则》的要求著录. 
-%  参考文献在正文中的引用方法：\cite{bib文件条目的第一行}
-
-\renewcommand\refname{\heiti\wuhao\centerline{参考文献}\global\def\refname{参考文献}}
-\vskip 12pt
-
-
-\let\OLDthebibliography\thebibliography
-\renewcommand\thebibliography[1]{
-  \OLDthebibliography{#1}
-  \setlength{\parskip}{0pt}
-  \setlength{\itemsep}{0pt plus 0.3ex}
-}
-
-{
-\renewcommand{\baselinestretch}{0.9}
-\liuhao
-\bibliographystyle{gbt7714-numerical}
-\bibliography{./Report/report}
-}
-
-\appendix
-
-\section{部分实验原理推导}
-
-\section{部分实验数据}
-
-\begin{table*}[H]
-    \centering
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \caption{空间成分滤波（一维光栅）实验数据记录} \label{tab:data_1d_filter}
-    \liuhao
-    \begin{tabular}{c p{5cm} p{5cm} p{5cm}}
-        \toprule
-        滤波情况（通过的衍射级） & 像面图像特征（定性描述） & 备注（条纹周期等） \\
-        \midrule
-        0, $\pm 1$ 级 & 条纹清晰，边缘较模糊 & 周期 $d \approx 1/f_0$ \\
-        0, $\pm 2$ 级 & 条纹清晰，边缘较模糊 & 周期 $d' \approx 1/(2f_0)$ \\
-        0, $\pm 1$, $\pm 2$ 级 & 条纹清晰，边缘较锐利 & 周期 $d \approx 1/f_0$ \\
-        仅 0 级 & 均匀亮背景，无条纹 & / \\
-        $\pm 1$ 级（滤除 0 级） & 条纹清晰，背景暗，对比度反转 & 周期 $d' \approx 1/(2f_0)$ \\
-        全部通过 & 条纹清晰，边缘锐利，接近方波 & 周期 $d \approx 1/f_0$ \\ 
-        \bottomrule
-    \end{tabular}
-\end{table*}
-
-\begin{table}[H]
-    \centering
-    \captionnamefont{\wuhao\bf\heiti}
-    \captiontitlefont{\wuhao\bf\heiti}
-    \caption{方向滤波（“光”字屏）实验数据记录} \label{tab:data_2d_filter}
-    \liuhao
-    \begin{tabular}{c p{5cm} p{5cm}}
-        \toprule
-        滤波器类型 & 像面图像特征（定性描述） & 分析 \\
-        \midrule
-        无滤波器 & 清晰的“光”字 & 包含所有频率成分 \\
-        竖直狭缝（过 0 级） & 仅显示“光”字的竖直笔画 & 滤除了竖直方向的频谱（对应水平笔画） \\
-        水平狭缝（过 0 级） & 仅显示“光”字的水平笔画 & 滤除了水平方向的频谱（对应竖直笔画） \\
-        45$^\circ$ 狭缝（过 0 级） & 未观察到清晰的特定方向笔画 & “光”字屏主要由水平和竖直结构构成 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
 
 
 \end{document}
