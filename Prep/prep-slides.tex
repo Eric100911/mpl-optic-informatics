@@ -1,0 +1,245 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{ctex} % For Chinese characters support
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs} % For nice tables
+
+% Beamer Theme
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Title Page Information
+\title[光学信息处理实验]{近代物理实验：光学信息处理}
+\author{王驰 2022012259}
+\institute{致理书院}
+\date{\today}
+
+\begin{document}
+
+% Title Page Frame
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Outline Frame
+\begin{frame}{报告提纲}
+    \tableofcontents
+\end{frame}
+
+% Section 1: Introduction
+
+\section{引言}
+
+\begin{frame}{Fourier变换}
+    \begin{block}{傅里叶变换的基本概念}
+        傅里叶变换 (Fourier Transform, FT) 是一种数学工具，用于将信号从空间域 (Spatial Domain) 转换到频域 (Frequency Domain)。
+        \begin{itemize}
+            \item \textbf{空间域}: 信号在 $(x,y)$ 坐标平面的表示，如图像等。
+            \item \textbf{频域}: 信号由不同频率成分组成的表示，揭示了信号的频率结构。
+        \end{itemize}
+    \end{block}
+    \begin{alertblock}{傅里叶变换公式}
+        \begin{equation}
+        G(f_x, f_y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x,y) e^{-2\pi i (f_x x + f_y y)} \, dx \, dy
+        \end{equation}
+        其中，$g(x,y)$ 是空间域信号，$G(f_x, f_y)$ 是对应的频域信号。
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Fourier变换的卷积定理}
+    \begin{block}{卷积定理}
+        傅里叶变换的卷积定理指出，两个函数的卷积在频域中对应于它们傅里叶变换的乘积：
+        \begin{equation}
+        \mathcal{F}\{g(x,y) * h(x,y)\} = G(f_x, f_y) \cdot H(f_x, f_y)
+        \end{equation}
+        其中，$*$ 表示卷积运算，$G(f_x, f_y)$ 和 $H(f_x, f_y)$ 分别是 $g(x,y)$ 和 $h(x,y)$ 的傅里叶变换。
+    \end{block}
+    \begin{alertblock}{物理意义}
+        这意味着在频域中进行滤波操作（如低通、高通滤波）相当于在空间域中对信号进行卷积，从而实现对图像的各种处理效果。
+    \end{alertblock}    
+\end{frame}
+
+% - How lenses perform Fourier transforms
+
+\begin{frame}{透镜的Fourier变换性质}
+    对薄透镜，傍轴近似下，透镜的作用是给入射波前添加一个二次相位因子：
+    \begin{equation}
+    \tilde{T}_L(x,y) = \exp\left(-ik\frac{x^2+y^2}{2F}\right)
+    \end{equation}
+    其中，$F$ 是透镜的焦距，$k = \frac{2\pi}{\lambda}$ 是波数。
+    当相干平行光照射位于透镜前焦面的物体时，在透镜的后焦面上得到的光场分布$G(x', y')$，恰正比于物光场$g(x,y)$的傅里叶变换：
+    \begin{equation}
+    G(x', y') \propto \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x,y) e^{-2\pi i (f_x x + f_y y)} \, dx \, dy
+    \end{equation}
+    其中，频率坐标与空间坐标的关系为：
+    \begin{equation}
+    f_x = \frac{x'}{\lambda F}, \quad f_y = \frac{y'}{\lambda F}
+    \end{equation}
+    这表明透镜可以实现空间域到频域的转换。
+\end{frame}
+
+\begin{frame}{Abbe成像原理与空间滤波}
+    \begin{block}{Abbe成像原理}
+        Abbe成像原理指出，物体的每个空间频率分量都可以看作是一个独立的波源，这些波源在成像系统中干涉叠加形成最终的像。
+        \begin{itemize}
+            \item 物镜对物体进行傅里叶变换，在频谱面形成频谱。
+            \item 频谱面上的各频率分量作为新波源，干涉叠加形成像。
+        \end{itemize}
+    \end{block}
+    \begin{alertblock}{空间滤波}
+        在频谱面上放置滤波器，可以选择性地修改频谱分量，从而改变最终的像。
+        \begin{itemize}
+            \item \textbf{低通滤波}: 去除高频分量，模糊图像。
+            \item \textbf{高通滤波}: 去除低频分量，锐化边缘。
+            \item \textbf{方向滤波}: 提取特定方向的纹理信息。
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{4F系统}
+    \begin{figure}
+        \includegraphics[width=0.8\textwidth]{Prep/4F-system.png} % Replace with actual diagram if available
+        \caption{4F系统示意图\cite{zhaoOptics2004_4F}}
+        \label{fig:4F-system}
+    \end{figure}
+
+    4F系统由两个焦距为$F$的透镜组成，物体位于第一个透镜的前焦面，像位于第二个透镜的后焦面。频谱面位于两个透镜的公共焦平面上。
+\end{frame}
+
+\begin{frame}{复合光栅的Fourier变换性质}
+    在频谱面上放置正弦光栅作为滤波器，其透光率满足：
+    \begin{equation}
+        H(\xi, \eta) = H_0 + H_1\cos (2\pi f_0 \xi + \varphi_0)
+    \end{equation}
+    其本身Fourier变换结果为：
+    \begin{equation}
+        h_0(x', y') = H_0 \delta(x', y') + \frac{H_1}{2} \left[ \delta\left(x' - \frac{f_0}{\lambda F}, y'\right) e^{i\varphi_0} + \delta\left(x' + \frac{f_0}{\lambda F}, y'\right) e^{-i\varphi_0} \right]
+    \end{equation}
+    若引入复合光栅作为滤波器，具有透光率分布：
+    \begin{equation}
+        H(\xi, \eta) = H_0 + H_1\cos (2\pi f_1 \xi + \varphi_1) + H_2\cos (2\pi f_2 \xi + \varphi_2)
+    \end{equation}
+    则其Fourier变换结果为：
+    \begin{align}
+        h(x', y') =& H_0 \delta(x', y') + \frac{H_1}{2} \left[ \delta\left(x' - \frac{f_1}{\lambda F}, y'\right) e^{i\varphi_1} + \delta\left(x' + \frac{f_1}{\lambda F}, y'\right) e^{-i\varphi_1} \right] \\
+        &+ \frac{H_2}{2} \left[ \delta\left(x' - \frac{f_2}{\lambda F}, y'\right) e^{i\varphi_2} + \delta\left(x' + \frac{f_2}{\lambda F}, y'\right) e^{-i\varphi_2} \right]
+    \end{align}
+\end{frame}
+
+\begin{frame}{使用复合光栅进行微分运算}
+    考察复合光栅的两个频率成分各自给出的$+1$级像（以$x' = \frac{f_{1,2}}{\lambda F}$为中心）；借助卷积定理得到，对应的像面光场为：
+    \begin{equation}
+    g_{+1}(x', y') = \frac{H_1}{2} g\left(x' - \frac{f_1}{\lambda F}, y'\right) e^{i\varphi_1} + \frac{H_2}{2} g\left(x' - \frac{f_2}{\lambda F}, y'\right) e^{i\varphi_2}
+    \end{equation}
+    考虑$f_2 = f_1 + \Delta f$（$\Delta f \ll f_1$）情形，选取$\varphi_2 = \varphi_1 + \pi$ 且 $H_1 = H_2$，则有：
+    \begin{align}
+        g_{+1}(x', y') &= \frac{H_1}{2} \left[ g\left(x' - \frac{f_1}{\lambda F}, y'\right) - g\left(x' - \frac{f_1 + \Delta f}{\lambda F}, y'\right) \right] e^{i\varphi_1} \\
+        &\approx -\frac{H_1 \Delta f}{2 \lambda F} \frac{\partial g}{\partial x'}\left(x' - \frac{f_1}{\lambda F}, y'\right) e^{i\varphi_1}
+    \end{align}
+    这表明复合光栅实现了对图像的微分运算。
+\end{frame}
+
+\begin{frame}{$\theta$ 调制}
+    \begin{figure}
+        \includegraphics[width=0.6\textwidth]{Prep/theta-plane.png}
+        \caption{$\theta$ 调制示意图\cite{zhaoOptics2004_4F}}
+        \label{fig:theta-plane}
+    \end{figure}
+    $\theta$片由多块不同取向的一维光栅拼成。使用白光入射，频谱面上依各个光栅取向形成一系列不同颜色的衍射光斑阵列。在频谱面上叠加孔阵滤波器，在适当的方向上保留适当颜色的$\pm 1$级衍射斑。在像面上，将能够得到一幅彩色图像。
+\end{frame}
+% - In two columns, left side the progress, right side the image
+
+\begin{frame}{光学信息处理的前沿方向}
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item \textbf{超构表面 (Metasurfaces)}: 使用亚波长结构设计“平坦光学”元件，实现对光波的任意调控。
+                \item \textbf{光学计算与神经网络}: 利用衍射光学实现神经网络中的核心运算——矩阵乘法\cite{zhouLargescaleNeuromorphicOptoelectronic2021}，功耗远低于电子计算。
+                \item \textbf{计算成像 (Computational Imaging)}: 结合光学硬件编码与软件算法解码，实现超越传统极限的成像。
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.9\textwidth]{Prep/DPU-framework-Dai.png}
+                \caption{使用衍射光学进行神经网络中矩阵计算的框架示意图\cite{zhouLargescaleNeuromorphicOptoelectronic2021}}
+                \label{fig:DPU-framework-Dai}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{实验设计}
+
+\begin{frame}{空间成分滤波}
+    \begin{block}{实验目的}
+        理解不同空间频率成分对图像（一维光栅）形态的贡献。通过滤波不同衍射级，观察像面图像的变化。
+    \end{block}
+    \begin{block}{实验步骤}
+        \begin{enumerate}
+            \item 在物面放置一维光栅（条纹竖直）。
+            \item 在频谱面观察水平排列的衍射光斑。
+            \item 用滤波器选择不同频谱分量通过。
+            \item 在像面观察并记录滤波后的图像。
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{方向滤波}
+    \begin{block}{实验目的}
+        对二维图像（正交光栅）进行特定方向信息的提取。
+    \end{block}
+    \begin{block}{实验步骤}
+        \begin{enumerate}
+            \item 物面放置正交光栅（如“光”字屏）。
+            \item 观察二维点阵频谱。
+            \item 用狭缝状滤波器选择水平、竖直或$45^\circ$方向频谱。
+            \item 观察像面图像，测算水平与$45^\circ$方向斜条纹的空间周期之比。
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{验证卷积定理}
+    \begin{block}{实验目的}
+        通过实验现象理解卷积定理：两个函数之积的傅里叶变换等于各自变换的卷积。
+    \end{block}
+    \begin{block}{实验步骤}
+        \begin{enumerate}
+            \item 分别观察卷积件1（如字母“A”）和卷积件2（如小孔）的频谱。
+            \item 将两者重叠放置，观察叠加后的频谱。
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{使用4F系统进行$\theta$ 调制}
+    \begin{block}{实验目的}
+        实现图像边缘增强（光学微分），通过复合光栅滤波器在频谱面进行$\theta$调制。
+    \end{block}
+    \begin{block}{实验步骤}
+        \begin{enumerate}
+            \item 物面放置待微分图片。
+            \item 频谱面放置复合光栅滤波器。
+            \item 缓慢平移复合光栅，观察±1级像的变化。
+            \item 记录边缘增强图像。
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\section{注意事项}
+
+\begin{frame}{注意事项}
+    \begin{block}{关键注意事项}
+        \begin{itemize}
+            \item \textbf{激光安全}: 严禁眼睛直视光路！
+            \item \textbf{元件清洁}: 避免触摸光学面。
+            \item \textbf{共轴调节}: 保证光路精度是实验成功的前提 。
+            \item \textbf{光束准直}: 使用平晶法，确保扩束后入射到物体的为平行光。
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\bibliographystyle{plain}
+\bibliography{Prep/prep-slides}
+
+\end{document}
